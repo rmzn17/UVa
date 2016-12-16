@@ -1,4 +1,6 @@
 # include <stdio.h>
+
+
 long big_mod(long a,long p,long m)
 {
     long r = 1;
