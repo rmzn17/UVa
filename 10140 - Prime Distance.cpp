@@ -33,7 +33,7 @@
 #define mx2(a, b) (a>b?a:b)
 #define mx3(a, b, c) mx2(a, mx2(b, c))
 #define mx4(a, b, c, d) mx2(a, mx2(b, mx2(c, d)))
-#define max 1000001
+#define MAX 1000001
 #define Pinf 99999999999
 #define Ninf -99999999999
 #define PI acos(-1)
