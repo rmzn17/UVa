@@ -41,69 +41,51 @@
 
 using namespace std;
 
-
-
 int main()
 {
-    int n;
-    int newline=1;
-    while(cin>>n)
+
+    int n,cs=1,tc;
+    cin>>tc;
+    while(tc--)
     {
-
-        vector<string>v;
-        mpsi mp;
-        string s;
-
+        int n;
+        cin>>n;
+        char ch;
+        int tgame=0,loss=0;
+        bool ok=true;
+        string s="";
         for(int i=0; i<n; i++)
         {
-            cin>>s;
-            v.pb(s);
-            mp[s]=0;
-
+            cin>>ch;
+            s+=ch;
         }
 
-
-        int a,b;
-        string giver;
-        bool ok=false;
         for(int i=0; i<n; i++)
         {
 
-            cin>>giver>>a>>b;
-            if(b!=0)
+            if(s[i]=='L'||s[i]=='D')
             {
-                ok=true;
-                int temp=a/b;
-                int temp1=b*temp;
-                mp[giver]-=temp1;
-                string s2;
-
-                for(int j=0; j<b; j++)
+                loss++;
+                tgame++;
+                if(loss>=3)
                 {
-                    cin>>s2;
-                    mp[s2]+=temp;
+                    ok=false;
+                    break;
+
                 }
             }
-
+            else
+            {
+                loss=0;
+                tgame++;
+            }
         }
-
-
-        if(newline>1)
-            printf("\n");
-
-        for(int i=0; i<n; i++)
-        {
-
-            cout<<v[i]<<" "<<mp[v[i]]<<endl;
-
-        }
-
-        newline++;
-
+        if(ok)
+            printf("Case %d: Yay! Mighty Rafa persists!\n",cs++);
+        else
+            printf("Case %d: %d\n",cs++,tgame);
 
     }
-
     return 0;
 }
-
 

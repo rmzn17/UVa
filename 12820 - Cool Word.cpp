@@ -41,69 +41,60 @@
 
 using namespace std;
 
-
-
 int main()
 {
-    int n;
-    int newline=1;
+
+    int n,cs=1;
     while(cin>>n)
     {
-
-        vector<string>v;
-        mpsi mp;
-        string s;
-
+        int cnt=0;
         for(int i=0; i<n; i++)
         {
+            map<char,int>mp;
+            string s;
             cin>>s;
-            v.pb(s);
-            mp[s]=0;
-
-        }
-
-
-        int a,b;
-        string giver;
-        bool ok=false;
-        for(int i=0; i<n; i++)
-        {
-
-            cin>>giver>>a>>b;
-            if(b!=0)
+            set<char>st;
+            for(int j=0; j<s.size(); j++)
             {
-                ok=true;
-                int temp=a/b;
-                int temp1=b*temp;
-                mp[giver]-=temp1;
-                string s2;
-
-                for(int j=0; j<b; j++)
-                {
-                    cin>>s2;
-                    mp[s2]+=temp;
-                }
+                mp[s[j]]++;
+                st.insert(s[j]);
             }
 
+            if(st.size()==1)
+            {
+                continue;
+            }
+
+            map<char,int>::iterator ii;
+            vector<int>vv;
+
+            for(ii=mp.begin(); ii!=mp.end(); ii++)
+            {
+
+                vv.push_back(ii->second);
+
+
+            }
+            sort(vv.begin(),vv.end());
+            bool ok=true;
+            int prev=vv[0];
+            for(int i=1; i<vv.size(); i++)
+            {
+                if(prev==vv[i])
+                {
+                    ok=false;
+                    break;
+
+                }
+                prev=vv[i];
+            }
+
+            if(ok)
+                cnt++;
+
         }
 
-
-        if(newline>1)
-            printf("\n");
-
-        for(int i=0; i<n; i++)
-        {
-
-            cout<<v[i]<<" "<<mp[v[i]]<<endl;
-
-        }
-
-        newline++;
-
-
+        printf("Case %d: %d\n",cs++,cnt);
     }
-
     return 0;
 }
-
-
